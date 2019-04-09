@@ -126,13 +126,13 @@ struct txn_test_gen_plugin_impl {
    void create_test_accounts(const std::string& init_name, const std::string& init_priv_key, const std::function<void(const fc::exception_ptr&)>& next) {
       std::vector<signed_transaction> trxs;
       trxs.reserve(2);
-
+      std::cout << "debug:" << init_name << ";" << init_priv_key << ";"  std::endl;
       try {
          name newaccountA("txn.test.a");
          name newaccountB("txn.test.b");
          name newaccountC("txn.test.t");
          name creator(init_name);
-
+         std::cout << "debug: " << contracts::eosio_token_abi().data() << std::endl;
          abi_def currency_abi_def = fc::json::from_string(contracts::eosio_token_abi().data()).as<abi_def>();
 
          controller& cc = app().get_plugin<chain_plugin>().chain();
